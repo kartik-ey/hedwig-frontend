@@ -9,7 +9,7 @@
   }
   
   .btn-google-signup {
-    color: #ea4335 !important;
+    color: #696666 !important;
     background-color:white;
   }
   .btn-login {
@@ -19,7 +19,7 @@
   }
   
   .btn-google {
-    color: #ea4335 !important;
+    color: #696666 !important;
     background-color:white;
   }
 
@@ -27,11 +27,19 @@
     display: none;
 }
 
-.signup-body {
-  background: #ffffff;
+.github-link:hover{
+  color: #ffffffb2 !important;
 }
 
-.home-body {
-  background: #ffffff;
+.footer-link:hover{
+  color: #ffffffb2 !important;
 }
 
+.about-nav{
+  color: white;
+}
+
+.navbar-brand{
+  font-size: 140%;
+  font-weight: 400;
+}
