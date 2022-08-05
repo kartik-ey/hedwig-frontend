@@ -13,3 +13,7 @@
     color: white !important;
     background-color: #ea4335;
   }
+
+  .about-body::-webkit-scrollbar{
+    display: none;
+}
