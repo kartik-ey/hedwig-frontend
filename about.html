@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>About</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link href="css/style.css" rel="stylesheet" />
+        <script type="text/javascript" src="js/verify.js"></script>
+    </head>
+    <body class="d-flex flex-column h-100" onload="verify()">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="home.html">Hedwig</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                            <li class="nav-item"> <button class="nav-link btn btn-link btn-sm" onclick="logout()" style="text-decoration: none;">Log Out</button></li> 
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Header-->
+                <section class="py-5">
+                    <div class="container px-5 my-5">
+                        <div class="text-center mb-5">
+                            <h1 class="fw-bolder">About This Website / WebApp</h1>
+                            <p class="lead fw-normal text-muted mb-0" style="margin-top: 1%">A Fynd Academy Project. Hedwig is a twitter clone.</p>
+                        </div>
+                    
+                    </div>
+                </section>
+                <section class="py-5"style="margin-top: -8%;">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-12 col-xl-12" style="margin-bottom: 5%;">
+                            <div class="text-center">
+                                <h2 class="fw-bolder">Tech-Stack Used to make this WebApp</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0" >
+                                <div style="text-align: center; margin-top: 18%;">
+                                    <img class="card-img-top" src="css/images/fastapi.png" alt="..."  style="width:90%" />
+                                </div>
+                                <div class="card-body p-4" align="center" style="margin-top:13%">
+                                    <h4>FastAPI to handle Backend of this WebApp</h4>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <div style="text-align: center; margin-top: 15%;">
+                                    <img class="card-img-top" src="css/images/tech.png" alt="..." style="width: 50%; height: 80%;" />
+                                </div>
+                                <div class="card-body p-4" align="center">
+                                    <h4>HTML, CSS, JS, Bootstrap 5: For the Frontend</h4>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <div style="text-align: center; margin-top: 15%;">
+                                    <img class="card-img-top" src="css/images/db.png" alt="..." style="width: 80%; height: 80%;" />
+                                </div>
+                                <div class="card-body p-4" align="center">
+                                    <h4>PostgreSQL : For Database Handling</h4>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+         
+          
+                </div>
+            </section>
+
+        </main>
+        <section class="py-5" style="margin-top:-7%">
+            <div class="container">
+                <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-12 col-xl-12" >
+                            <div class="text-center">
+                                <h2 class="fw-bolder"><img src="css/images/Github.png" class="img-fluid" width="15%"></h2>
+                            </div>
+                        </div>
+                        <div class="col-md-6"align="center">                           
+                            <a href="https://github.com/hansraj1999/certificate_frontend.git" class="link-primary">  <h2 class="fw-bolder">Frontend</h2></a>
+                        </div>
+                        <div class="col-md-6" align="center">
+                            <a href="https://github.com/hansraj1999/certificate-module.git" class="link-primary">  <h2 class="fw-bolder">Backend</h2></a>
+                        </div>
+
+                    </div>
+                
+            </div>
+        </section>
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Hedwig</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="https://www.instagram.com/hansraj__1999/">Instagram</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="https://www.facebook.com/hansraj.deghun.9/">Facebook</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="https://discord.gg/cqQWZxGg6P">Discord Server</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+</html>
