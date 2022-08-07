@@ -72,7 +72,7 @@
 .middle{
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
   height: 100%;
   color: #ffffff;
   float: left;
@@ -84,11 +84,15 @@
   left: 0;
 }
 
-.home-main .middle .avis-show{
+.home-main .middle .avis-cards{
   position: relative;
   border: 1px;
   border-color: #ffffffc0;
   border-style: solid;
   border-left: 0;
   border-right: 0;
+}
+
+#hideme{
+  display: none;
 }
