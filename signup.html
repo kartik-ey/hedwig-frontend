@@ -27,19 +27,19 @@
               <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Sign Up</b></h5>
               <form method="post" id="formElem" class="formElem">
                 <div class="form-floating mb-3">
-                    <input name="fullname" type="fullname" class="form-control" id="floatingInput" placeholder="Todd Chavez"> 
+                    <input name="fullname" type="fullname" class="form-control" id="floatingInput" placeholder="Todd Chavez" required> 
                     <label for="floatingInput">Full Name</label>  
                 </div>
                 <div class="form-floating mb-3">
-                    <input name="username" type="username" class="form-control" id="floatingInput" placeholder="username">
+                    <input name="username" type="username" class="form-control" id="floatingInput" placeholder="username" required>
                     <label for="floatingInput">Username</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <input name="email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                   <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div class="d-grid">
@@ -87,13 +87,11 @@
         })
         let result = await response.json(); 
         console.log(result);
-        if(result==true){
-            alert('Otp sent');
-            const url = "otp.html?email="+email;
-            window.location.href=url;
-        }
+        console.log(response.status);
+        if(response.status===201){
+            alert('User Created Successfully.');}
         else{
             alert(result['detail']);
         }
-};
+  };
 </script>
