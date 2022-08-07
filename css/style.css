@@ -61,6 +61,8 @@
   width: 20%;
   height: 100%;
   float: left;
+  position: sticky;
+  top: 10px;
 }
 
 .home-main{
@@ -77,7 +79,7 @@
 }
 
 .home-main .middle .avis-create{
-  top: 0;
+  top: 5px;
   position: relative;
   left: 0;
 }
