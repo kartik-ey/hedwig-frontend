@@ -25,14 +25,10 @@
       <body class="home-body bg-dark">
           <div class="container home-cont">
           <div id="sidebar"></div>
-          <main class="home-main d-flex flex-nowrap" id="main">
+          <main class="home-main d-flex flex-nowrap">
             <div class='middle border border-light border-1 border-top-0 border-bottom-0 position-relative' id="middle">
               <div class="avis-create">
-                <form class="bg-dark" id="createAvis" style="padding: 3%;">
-                  <textarea class="bg-dark" id="text-area" spellcheck="false" placeholder = "Happiness can be found in even the darkest of times, if one only remembers to turn on the light..." required></textarea>
-                  <button class="btn btn-avis rounded-pill" type="submit">
-                  Avis&nbsp;<i class="fa fa-magic" aria-hidden="true"></i></button>
-                  </form>
+                <h1>hello</h1>
               </div>
               <div class="avis-show" id="hideme">
               </div>  
@@ -41,52 +37,21 @@
         </div>
       </body>
       <script type="text/javascript">
-        window.onload = verify();
-
         var myheaders = new Headers();
         //console.log(sessionStorage.getItem('token'))
         myheaders.append("Authorization",sessionStorage.getItem("token"));
-        myheaders.append('Content-Type','application/json');
-        console.log(myheaders)
-        createAvis.onsubmit = async(k) =>{
-          k.preventDefault();
-
-          var cards = document.querySelector("#createAvis");
-          create_avis = {
-            body: cards.querySelector("textarea[id=text-area]").value
-          }
-          create_avis = JSON.stringify(create_avis)
-          console.log(create_avis)
-
-          let request = await fetch('http://127.0.0.1:8000/create_avis',{
-            method: 'POST',
-            headers: myheaders,
-                body: create_avis,
-          })
-          let result = await request.json(); 
-        console.log(result);
-        console.log(request.status);
-        if(request.status===200){
-          location.reload()
-          }
-        else{
-            alert(result['detail']);
-        }
-
-        }
+        window.onload = verify();
         window.onload = async(e) => {
           e.preventDefault();
-
-          let response = await fetch('http://127.0.0.1:8000/all_avis', {
+          let response = await fetch('http://127.0.0.1:8000/avis_by_user/{user_id}', {
             method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers: myheaders
         })
         let avis = await response.json();
-        //avis.forEach((f) => {
-          //console.log(f)
-        //})
+//        console.log(avis)
+//        avis.forEach((f) => {
+//          console.log(f)
+//        })
         if(avis.length>0){
             
           avis.forEach( a =>{

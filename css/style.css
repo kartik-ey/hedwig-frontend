@@ -66,6 +66,7 @@
 }
 
 .home-main{
+  width:50%;
   height: 100%;
 }
 
@@ -76,18 +77,27 @@
   height: 100%;
   color: #ffffff;
   float: left;
+  border-color: #ffffff66;
+  border: 0.5px;
+  border-style: solid;
+  border-left: 0;
+  border-right: 0;
 }
 
 .home-main .middle .avis-create{
+  color: #ffffff;
+  margin-top: 20px;
   top: 5px;
   position: relative;
   left: 0;
+  border-left: 0;
+  border-right: 0;
 }
 
 .home-main .middle .avis-cards{
   position: relative;
-  border: 1px;
-  border-color: #ffffffc0;
+  border: 0.5px;
+  border-color: #ffffff66;
   border-style: solid;
   border-left: 0;
   border-right: 0;
@@ -95,4 +105,19 @@
 
 #hideme{
   display: none;
+}
+
+.avis-create #text-area {
+  width: 100%;
+  resize: none;
+  height: 100%;
+  color: #ffffff;
+  border: 0;
+}
+
+.avis-create .btn-avis{
+  float: right;
+  margin: 15px;
+  background-color: #ffffff38;
+  color: #ffffff;
 }

@@ -7,7 +7,7 @@
         <meta name="author" content="" />
         <title>Login</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="assets/favicon1.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -25,21 +25,14 @@
           <div class="card border-0 shadow rounded-3 my-5">
             <div class="card-body p-4 p-sm-5">
               <h5 class="card-title text-center mb-5 fw-light fs-5"><b>Log In</b></h5>
-              <form>
+              <form method="post" id="formElem" class="formElem">
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                  <input name="username" type="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
                   <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                   <label for="floatingPassword">Password</label>
-                </div>
-  
-                <div class="form-check mb-3">
-                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
-                  <label class="form-check-label" for="rememberPasswordCheck">
-                    Remember password
-                  </label>
                 </div>
                 <div class="d-grid">
                   <button class="btn btn-secondary btn-login text-uppercase fw-bold" type="submit">Sign
@@ -59,9 +52,27 @@
       </div>
     </div>
   </body>
-   <!-- Core theme JS-->
+  </html>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+     formElem.onsubmit = async(e) => {
+        e.preventDefault();
+        let response = await fetch('http://127.0.0.1:8000/token', {
+      method: 'POST',
+      body: new FormData(formElem)
+    })
+    let result = await response.json();
+    console.log(result['detail']);
+       if(result['detail']=="Entered Wrong Username or Password!!"){
+        alert("wrong username or password");
+       }
+       else{
+        sessionStorage.setItem("token","Bearer ".concat(result['access_token'] ));
+        console.log(sessionStorage.getItem("token"));
+        window.location.href="home.html";
+       }
 
-  <script src="js/scripts.js"></script>
-</html>
+      }
+  </script>
+
