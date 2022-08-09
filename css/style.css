@@ -115,9 +115,18 @@
   border: 0;
 }
 
+.avis-create #text-area::-webkit-scrollbar{
+  display: none;
+}
+
 .avis-create .btn-avis{
   float: right;
   margin: 15px;
   background-color: #ffffff38;
   color: #ffffff;
+}
+
+
+.avis-card-head #three_dot{
+  float: right;
 }

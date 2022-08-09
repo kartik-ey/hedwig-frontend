@@ -37,10 +37,11 @@
         </div>
       </body>
       <script type="text/javascript">
+      window.onload = verify();
         var myheaders = new Headers();
         //console.log(sessionStorage.getItem('token'))
         myheaders.append("Authorization",sessionStorage.getItem("token"));
-        window.onload = verify();
+        myheaders.append('Content-Type','application/json');
         window.onload = async(e) => {
           e.preventDefault();
           let response = await fetch('http://127.0.0.1:8000/avis_by_user/{user_id}', {
@@ -48,6 +49,10 @@
             headers: myheaders
         })
         let avis = await response.json();
+        if(response.status===401){
+            alert('Session Expired, Please login again.')
+            logout();
+        }
 //        console.log(avis)
 //        avis.forEach((f) => {
 //          console.log(f)
@@ -71,6 +76,63 @@
 
             let avis_card_head = document.createElement('div');
             avis_card_head.className = 'avis-card-head';
+            //avis_card_head.innerHTML = "";
+            
+
+            var div=document.createElement('div');
+            div.className="dropright";
+            div.id="three_dot";
+            avis_card_head.appendChild(div);
+
+            var btn=document.createElement("button");
+            btn.type="button";
+            btn.className="btn btn-dark rounded-pill";
+            btn.setAttribute("data-bs-toggle","dropdown");
+            btn.ariaHasPopup="true";
+            btn.ariaExpanded="flase";
+            div.appendChild(btn);
+
+            var icon=document.createElement("i");
+            icon.className="fas fa-ellipsis-h";
+            btn.appendChild(icon);
+
+            var ul=document.createElement("ul");
+            ul.className="dropdown-menu text-medium shadow bg-dark";
+            btn.appendChild(ul);
+
+            var list1=document.createElement("li");
+            var anchor=document.createElement("a");
+            anchor.className="dropdown-item btn";
+            anchor.id="edit"+a.avis_id;
+            anchor.href="#";
+            anchor.innerHTML="Edit";
+            ul.appendChild(list1);
+            list1.appendChild(anchor);
+
+            var list2=document.createElement("li");
+            var hr=document.createElement("hr");
+            hr.className="dropdown-divider";
+            ul.appendChild(list2);
+            list2.appendChild(hr);
+
+            var list3=document.createElement("li");
+            var btn1=document.createElement("button");
+            btn1.className="dropdown-item btn";
+            btn1.id=a.avis_id;
+            btn1.setAttribute("onclick","delete_avis(this);");
+            btn1.innerHTML="Delete";
+            ul.appendChild(list3);
+            list3.appendChild(btn1);
+            /*`<div class="dropright" id="three_dot">
+                <button type="button" class="btn btn-dark rounded-pill" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-h"></i></button>
+                    <ul class="dropdown-menu text-medium shadow bg-dark">
+                      <li><a class="dropdown-item btn" href="#">Edit</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><button class="dropdown-item btn" id="``" onclick="delete(this)">Delete</button></li>
+                    </ul> 
+              </div>`*/
+
             card_body.appendChild(avis_card_head);
 
             let title = document.createElement('h6');
@@ -115,13 +177,35 @@
 
             let text = document.createElement('h1');
             text.innerText = 'Nothing to See Here.';
-            text.className = 'card-text';
+            text.className = 'card-text mute';
             text.id = 'card-text'
             card_body.appendChild(text);
 
           document.getElementById('hideme').appendChild(avis_cards);
         }
-      }
+
+    }
+            
+        //console.log(a.avis_id)
+        async function delete_avis(x) {
+            let avis_id = parseInt(x.id)
+            let request = await fetch(`http://127.0.0.1:8000/delete_avis/${avis_id}`,{
+                method: 'DELETE',
+                headers: myheaders,  
+
+            });
+              
+            let result = await request.json();
+            alert(result['msg']);
+            if(request.status===200){
+                location.reload()
+            }
+            else{
+            alert(result['detail'])
+            }
+        //console.log(parseInt(x.id));
+
+        }
       </script>
 </html>    
 
