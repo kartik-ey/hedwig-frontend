@@ -147,3 +147,15 @@
 .modal-body #avis_edit::-webkit-scrollbar{
   display: none;
 }
+
+
+#profileCreate .avis-cards{
+  color: #ffffff;
+  margin-top: 20px;
+  top: 5px;
+  position: relative;
+  left: 0;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}

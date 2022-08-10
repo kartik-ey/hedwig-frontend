@@ -27,8 +27,7 @@
           <div id="sidebar"></div>
           <main class="home-main d-flex flex-nowrap">
             <div class='middle border border-light border-1 border-top-0 border-bottom-0 position-relative' id="middle">
-              <div class="avis-create">
-                <h1>hello</h1>
+              <div class="profile-create" id="profileCreate">
               </div>
               <div class="avis-show" id="hideme">
               </div>  
@@ -64,13 +63,14 @@
         myheaders.append('Content-Type','application/json');
         window.onload = async(e) => {
           e.preventDefault();
+          loadProfile();
           let response = await fetch('http://127.0.0.1:8000/avis_by_user', {
             method: 'GET',
             headers: myheaders
         })
         let avis = await response.json();
         if(response.status===401){
-            alert('Session Expired, Please login again.')
+            alert('Session Expired, Please login again.');
             logout();
         }
 //        console.log(avis)
@@ -270,6 +270,64 @@
         else{
             alert(result['detail']);
         }
+    }
+               
+          async function loadProfile(){
+          let response = await fetch('http://127.0.0.1:8000/get_user', {
+            method: 'GET',
+            headers: myheaders
+        })
+        let profile = await response.json();
+        //console.log(profile)
+        
+            let avis_cards = document.createElement('div');
+            avis_cards.className = 'avis-cards';
+
+            let card = document.createElement('div');
+            card.className = 'card bg-dark';
+            avis_cards.appendChild(card);
+
+            let card_body = document.createElement('div');
+            card_body.className = 'card-body';
+            card.appendChild(card_body);
+
+            let avis_card_head = document.createElement('div');
+            avis_card_head.className = 'avis-card-head';
+            card_body.appendChild(avis_card_head);
+
+            let fullname = document.createElement('h6');
+            fullname.innerText = 'Full Name: '+profile.fullname;
+            fullname.className = 'card-title';
+            fullname.id="card-fullname";
+            avis_card_head.appendChild(fullname);
+
+            let username = document.createElement('h6');
+            username.innerText = 'Username: '+profile.username;
+            username.className = 'card-title';
+            username.id="card-username";
+            avis_card_head.appendChild(username);
+
+            let email = document.createElement('h6');
+            email.innerText = 'Email: '+profile.email;
+            email.className = 'card-title';
+            email.id="card-email";
+            avis_card_head.appendChild(email);
+
+            let dob = document.createElement('h6');
+            dob.innerText = 'Born On: '+profile.dob;
+            dob.className = 'card-title';
+            dob.id="card-dob";
+            avis_card_head.appendChild(dob);
+
+            
+            let joined_on = document.createElement('h6');
+            joined_on.innerText = 'Joined On: '+profile.created_on;
+            joined_on .className = 'card-joined_on';
+            joined_on .id="card-created_on";
+            avis_card_head.appendChild(joined_on);
+
+            document.getElementById('profileCreate').appendChild(avis_cards);
+
     }
       </script>
 </html>    

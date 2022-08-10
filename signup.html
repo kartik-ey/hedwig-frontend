@@ -39,6 +39,10 @@
                   <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
+                  <input name="dob" type="date" class="form-control" id="floatingInput" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" required>
+                  <label for="floatingInput">Born On</label>
+                </div>
+                <div class="form-floating mb-3">
                   <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                   <label for="floatingPassword">Password</label>
                 </div>
@@ -74,6 +78,7 @@
             fullname: form.querySelector('input[name="fullname"]').value,
             username: form.querySelector('input[name="username"]').value,
             email: form.querySelector('input[name="email"]').value,
+            dob: form.querySelector('input[name="dob"]').value,
             password: form.querySelector('input[name="password"]').value
         }
         user = JSON.stringify(user)
@@ -86,10 +91,11 @@
                 body: user,
         })
         let result = await response.json(); 
-        console.log(result);
-        console.log(response.status);
+        //console.log(result);
+        //console.log(response.status);
         if(response.status===201){
-            alert('User Created Successfully.');}
+            alert('User Created Successfully.');
+            window.location.href="login.html";}
         else{
             alert(result['detail']);
         }
