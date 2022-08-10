@@ -149,6 +149,11 @@
 }
 
 
+#profileCreate .card{
+  border-top: 0;
+}
+
+
 #profileCreate .avis-cards{
   color: #ffffff;
   margin-top: 20px;

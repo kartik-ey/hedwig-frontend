@@ -39,11 +39,11 @@
                     in</button>
                 </div>
                 <hr class="my-4">
-                <div class="d-grid mb-2">
+                <!--<div class="d-grid mb-2">
                   <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
                     <i class="fab fa-google me-2"></i> Sign in with Google
                   </button>
-                </div>
+                </div>-->
                 <p class="mt-5 mb-3 text-muted">&copy; 2022</p>
               </form>
             </div>
@@ -64,7 +64,11 @@
     })
     let result = await response.json();
     //console.log(result['detail']);
-       if(result['detail']=="Entered Wrong Username or Password!!"){
+       if(response.status===400){
+        alert("Account inactive, kindly contact Admin.")
+        location.reload();
+       }
+       else if(result['detail']=="Entered Wrong Username or Password!!"){
         alert("wrong username or password");
        }
        else{

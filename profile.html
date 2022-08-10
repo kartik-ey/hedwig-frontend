@@ -214,6 +214,7 @@
             
         //console.log(a.avis_id)
         async function delete_avis(x) {
+            alert('Are you sure, you want to delete this avis?')
             let avis_id = parseInt(x.id)
             let request = await fetch(`http://127.0.0.1:8000/delete_avis/${avis_id}`,{
                 method: 'DELETE',
