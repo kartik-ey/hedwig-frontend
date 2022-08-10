@@ -33,6 +33,26 @@
               <div class="avis-show" id="hideme">
               </div>  
             </div>
+            <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-dark" style="color:white;">
+                    <div class="modal-header bg-dark">
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Avis</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="editAvis" method="post">
+                        <div class="mb-3">
+                          <label for="avis_edit" class="col-form-label">Avis:</label>
+                          <textarea class="form-control bg-dark" style="color:white;" id="avis_edit" spellcheck="false" required></textarea>
+                        </div>
+                        <button type="button" class="btn btn-dark rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-dark rounded-pill" style="float: right;">Save</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
           </main>
         </div>
       </body>
@@ -44,7 +64,7 @@
         myheaders.append('Content-Type','application/json');
         window.onload = async(e) => {
           e.preventDefault();
-          let response = await fetch('http://127.0.0.1:8000/avis_by_user/{user_id}', {
+          let response = await fetch('http://127.0.0.1:8000/avis_by_user', {
             method: 'GET',
             headers: myheaders
         })
@@ -101,13 +121,16 @@
             btn.appendChild(ul);
 
             var list1=document.createElement("li");
-            var anchor=document.createElement("a");
-            anchor.className="dropdown-item btn";
-            anchor.id="edit"+a.avis_id;
-            anchor.href="#";
-            anchor.innerHTML="Edit";
+            var btn2=document.createElement("button");
+            btn2.className="dropdown-item btn";
+            btn2.id=a.avis_id;
+            btn2.setAttribute("data-bs-toggle","modal");
+            btn2.setAttribute("data-bs-target","#edit_modal");
+            btn2.setAttribute("data-bs-whatever","@edit_modal");
+            btn2.setAttribute("onclick","get_avis(this.id);");
+            btn2.innerHTML="Edit";
             ul.appendChild(list1);
-            list1.appendChild(anchor);
+            list1.appendChild(btn2);
 
             var list2=document.createElement("li");
             var hr=document.createElement("hr");
@@ -155,6 +178,9 @@
 
             document.getElementById('hideme').appendChild(avis_cards);
 
+            //document.getElementById('avis_edit').setAttribute("placeholder",a.body)
+
+            //document.getElementById('avis_edit').value = a.body; 
         })
         }        
         else{
@@ -206,6 +232,45 @@
         //console.log(parseInt(x.id));
 
         }
+        async function get_avis(y) {
+            let avis_id = parseInt(y)
+            let request = await fetch(`http://127.0.0.1:8000/get_avis/${avis_id}`,{
+                method: 'GET',
+                headers: myheaders,  
+
+            });
+            
+            let result = await request.json();
+            //console.log(result.body)
+            document.getElementById('avis_edit').value = result.body;
+            document.getElementById('avis_edit').setAttribute("avis_id",result.avis_id)
+        }
+        editAvis.onsubmit = async(z) =>{
+          z.preventDefault();
+          
+          var avis = document.querySelector("#editAvis");
+          let avis_id = document.getElementById('avis_edit').getAttribute("avis_id")
+          //console.log("avis_id "+avis_id)
+          edit_avis = {
+            body: avis.querySelector("textarea[id=avis_edit]").value
+          }
+          edit_avis = JSON.stringify(edit_avis)
+          //console.log(create_avis)
+
+          let request = await fetch(`http://127.0.0.1:8000/edit_avis/${avis_id}`,{
+            method: 'PUT',
+            headers: myheaders,
+                body: edit_avis,
+          })
+          let result = await request.json();
+          if(request.status===200){
+            alert(result["msg"]) 
+            location.reload()
+          }
+        else{
+            alert(result['detail']);
+        }
+    }
       </script>
 </html>    
 

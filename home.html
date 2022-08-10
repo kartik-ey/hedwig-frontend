@@ -28,7 +28,7 @@
           <main class="home-main d-flex flex-nowrap" id="main">
             <div class='middle border border-light border-1 border-top-0 border-bottom-0 position-relative' id="middle">
               <div class="avis-create">
-                <form class="bg-dark" id="createAvis" style="padding: 3%;">
+                <form method="post" class="bg-dark" id="createAvis" style="padding: 3%;">
                   <textarea class="bg-dark" id="text-area" spellcheck="false" placeholder = "Happiness can be found in even the darkest of times, if one only remembers to turn on the light..." required></textarea>
                   <button class="btn btn-avis rounded-pill" type="submit">
                   Avis&nbsp;<i class="fa fa-magic" aria-hidden="true"></i></button>
@@ -56,7 +56,7 @@
             body: cards.querySelector("textarea[id=text-area]").value
           }
           create_avis = JSON.stringify(create_avis)
-          console.log(create_avis)
+          //console.log(create_avis)
 
           let request = await fetch('http://127.0.0.1:8000/create_avis',{
             method: 'POST',
@@ -64,8 +64,8 @@
                 body: create_avis,
           })
           let result = await request.json(); 
-        console.log(result);
-        console.log(request.status);
+        //console.log(result);
+        //console.log(request.status);
         if(request.status===200){
           location.reload()
           }
