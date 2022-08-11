@@ -46,19 +46,27 @@
                   Profile
                 </a>
                 <li class="nav-item">
+                  <a href="/settings.html" class="a-text btn btn-dark rounded-pill">
+                    <i class="fa fa-wrench fa-sm" aria-hidden="true"></i>
+                    &nbsp;Settings
+                  </a>
+                </li>
+                <li class="nav-item">
                 <a href="/about.html" class="a-text btn btn-dark rounded-pill">
-                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  <i class="fa fa-info-circle fa-sm" aria-hidden="true"></i>
                   &nbsp;About
                 </a>
               </li>
             </ul>
             <hr>
-            <div class="dropdown">
+            <div class="dropdown flex">
               <a href="#" class="d-flex align-items-center link-light text-decoration-none btn-toggle btn btn-dark rounded-pill" data-bs-toggle="dropdown" aria-expanded="false" id="bottom_name">
-                <svg class="bi pe-none me-2" width="20" height="20"><use xlink:href="#people-circle"/></svg>
+                <svg class="bi pe-none me-2" width="28" height="28"><use xlink:href="#people-circle"/></svg>
+                <div id="show_user">
+                </div>
               </a>
               <ul class="dropdown-menu text-medium shadow bg-dark">
-                <li><a class="dropdown-item" href="./settings.html">Settings</a></li>
+                <li><a class="dropdown-item btn" href="./settings.html">Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item btn" onclick="logout()">Sign out</a></li>
               </ul>
@@ -73,3 +81,35 @@
 integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
   <script src="js/sidebar.js"></script>
+  <!--<script type="text/javascript">
+    window.onload = verify();
+        var myheaders = new Headers();
+        //console.log(sessionStorage.getItem('token'))
+        myheaders.append("Authorization",sessionStorage.getItem("token"));
+        myheaders.append('Content-Type','application/json');
+    window.onload = async()=>{
+    let response = await fetch('http://127.0.0.1:8000/username', {
+            method: 'GET',
+            headers: myheaders
+        })
+        let user = await response.json();
+        //console.log(user);
+        if(response.status===401){
+          alert(user['detail']);
+          window.location.href="login.html";
+        }
+        
+        let bottom_user = document.getElementById('show_user');
+
+        let fullname = document.createElement('h6');
+        fullname.innerHTML = user.fullname;
+        bottom_user.appendChild(fullname);
+
+        let username = document.createElement('p');
+        username.innerHTML = user.username;
+        username.className = 'text-muted';
+        bottom_user.appendChild(username);
+
+    }
+  </script>-->
+  

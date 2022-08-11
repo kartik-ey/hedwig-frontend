@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Home</title>
+        <title>Profile</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon1.ico" />
         <!-- Bootstrap icons-->
@@ -223,7 +223,7 @@
             });
               
             let result = await request.json();
-            alert(result['msg']);
+            //alert(result['msg']);
             if(request.status===200){
                 location.reload()
             }
@@ -322,7 +322,7 @@
             div2.appendChild(email);
 
             let dob = document.createElement('p');
-            dob.innerHTML = `<i class="fa fa-birthday-cake" aria-hidden="true"></i>&nbsp;Born On:`+profile.dob;
+            dob.innerHTML = `<i class="fa fa-birthday-cake" aria-hidden="true"></i>&nbsp;Born: `+profile.dob;
             dob.className = 'card-subtitle mb-2';
             dob.id="card-dob";
             div2.appendChild(dob);

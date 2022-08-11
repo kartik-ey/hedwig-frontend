@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Home</title>
+        <title>Settings</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon1.ico" />
         <!-- Bootstrap icons-->
@@ -22,79 +22,159 @@
           });
           </script> 
       </head>
-      <body class="home-body bg-dark">
+      <body class="home-body bg-dark" style="height: 700px;">
           <div class="container home-cont">
           <div id="sidebar"></div>
           <main class="home-main d-flex flex-nowrap">
-            <div class='middle border border-light border-1 border-top-0 border-bottom-0 position-relative' id="middle">
-              <div class="profile-create" id="profileCreate">
+            <div class='middle border border-light border-1' id="middle" style="margin-top:20px;">
+              <div class="edit-profile" id="Editprofile">
+                <div class="card bg-dark"  style="border:0; top: 10px;">
+                  <div class="card-header bg-dark" style="border:0;">
+                    <h4>Edit Profile&nbsp;
+                    <i class="fa fa-pencil fa-xs" aria-hidden="true"></i></h4>
+                  </div>
+                  <div class="card-body flex bg-dark"  style="border:0; flex-direction: column;">
+                    <p class="card-text bg-dark" style="float: left;">Edit the details of your profile.</p>
+                    <button class="btn rounded-pill" id="btn-settings-edit" onclick="loadProfile()" 
+                    data-bs-toggle="modal" data-bs-target="#edit_modal" data-bs-whatever="@edit_modal">Edit</button>
+                    <div class="modal fade" id="edit_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content bg-dark" style="color:white;">
+                          <div class="modal-header bg-dark">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body bg-dark">
+                            <form id="editUser" class="bg-dark">
+                              <div class="form-floating mb-3 bg-dark">
+                                <input name="fullname" type="fullname" class="form-control bg-dark" id="fullname" placeholder="Todd Chavez" required> 
+                                <label for="fullname">Full Name</label>  
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input name="username" type="username" class="form-control bg-dark" id="username" placeholder="username" required pattern="[^@]+" title="Do Not add @">
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                              <input name="email" type="email" class="form-control bg-dark" id="email" placeholder="name@example.com" required>
+                              <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3" style="color: white;">
+                              <input name="dob" type="date" class="form-control bg-dark" id="dob" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" required>
+                              <label for="dob">Born On</label>
+                            </div>
+                              <button type="button" class="btn btn-dark rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-dark rounded-pill" style="float: right;">Save</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="del-profile" id="delprofile">
+                <div class="card bg-dark"  style="border:0; top: 10px;">
+                  <div class="card-header bg-dark" style="border:0;">
+                    <h4>Delete Account&nbsp;
+                      <i class="fa fa-trash-o fa-xs" aria-hidden="true"></i>
+                  </div>
+                  <div class="card-body flex bg-dark"  style="border:0; flex-direction: column;">
+                    <p class="card-text bg-dark" style="float: left;">Delete yourself from the matrix.</p>
+                    <button class="btn btn-outline-danger rounded-pill" style="float: right;"
+                    data-bs-toggle="modal" data-bs-target="#delete_modal" data-bs-whatever="@edit_modal">Delete</button>
+                  </div>
+                </div>
+              </div>
+              <div class="modal fade" id="delete_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content bg-dark" style="color:white;">
+                    <div class="modal-header bg-dark">
+                      <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure you want to delete your account and all the avis?</p>
+                        <button type="button" class="btn btn-dark rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-danger rounded-pill" style="float: right;" onclick="delete_user()">Confirm</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </main>
           </div>
       </body>
       <script type="text/javascript">
+      window.onload = verify();
       let myheaders = new Headers();
       myheaders.append("Authorization",sessionStorage.getItem("token"));
         myheaders.append('Content-Type','application/json');
-      window.onload = verify(),loadProfile();
       async function loadProfile(){
           let response = await fetch('http://127.0.0.1:8000/get_user', {
             method: 'GET',
             headers: myheaders
         })
         let profile = await response.json();
-        //console.log(profile)
-        
-            let avis_cards = document.createElement('div');
-            avis_cards.className = 'avis-cards';
+        //console.log(profile);
+        if(response.status===401){
+            alert('Session Expired, Please login again.');
+            logout();
+        }
+        document.getElementById('fullname').value = profile.fullname;
+        let u = profile.username; 
+        let new_username = u.substring('@'.length);
+        document.getElementById('username').value = new_username;
+        document.getElementById('email').value = profile.email;
+        document.getElementById('dob').value = profile.dob;
+        }
 
-            let card = document.createElement('div');
-            card.className = 'card bg-dark';
-            avis_cards.appendChild(card);
 
-            let card_body = document.createElement('div');
-            card_body.className = 'card-body';
-            card.appendChild(card_body);
+        editUser.onsubmit = async(h)=>{
+          h.preventDefault();
+          
+          let user = document.querySelector('#editUser')
+          //console.log(new_username);
+          edit_user = {
+            fullname: user.querySelector('input[name="fullname"]').value,
+            username: user.querySelector('input[name="username"]').value,
+            email: user.querySelector('input[name="email"]').value,
+            dob: user.querySelector('input[name="dob"]').value,
+          }
+          edit_user = JSON.stringify(edit_user);
+          //console.log(edit_user);
+          let request = await fetch(`http://127.0.0.1:8000/edit_user`,{
+            method: 'PUT',
+            headers: myheaders,
+                body: edit_user,
+          });
+          let result = await request.json();
+          if(request.status===200){
+            alert(result["msg"]) 
+            location.reload();
+          }
+        else{
+            alert(result['detail']);
+        }
+      }
 
-            let avis_card_head = document.createElement('div');
-            avis_card_head.className = 'avis-card-head';
-            card_body.appendChild(avis_card_head);
+      async function delete_user(){
+        //console.log('deleted');
+            let request = await fetch(`http://127.0.0.1:8000/delete_user`,{
+                method: 'DELETE',
+                headers: myheaders,  
 
-            let fullname = document.createElement('h6');
-            fullname.innerText = 'Full Name: '+profile.fullname;
-            fullname.className = 'card-title';
-            fullname.id="card-fullname";
-            avis_card_head.appendChild(fullname);
-
-            let username = document.createElement('h6');
-            username.innerText = 'Username: '+profile.username;
-            username.className = 'card-title';
-            username.id="card-username";
-            avis_card_head.appendChild(username);
-
-            let email = document.createElement('h6');
-            email.innerText = 'Email: '+profile.email;
-            email.className = 'card-title';
-            email.id="card-email";
-            avis_card_head.appendChild(email);
-
-            let dob = document.createElement('h6');
-            dob.innerText = 'Born On: '+profile.dob;
-            dob.className = 'card-title';
-            dob.id="card-dob";
-            avis_card_head.appendChild(dob);
-
-            
-            let joined_on = document.createElement('h6');
-            joined_on.innerText = 'Joined On: '+profile.created_on;
-            joined_on .className = 'card-joined_on';
-            joined_on .id="card-created_on";
-            avis_card_head.appendChild(joined_on);
-
-            document.getElementById('profileCreate').appendChild(avis_cards);
-
-    }
+            });
+              
+            let result = await request.json();
+            //alert(result['msg']);
+            if(request.status===200){
+                location.reload()
+            }
+            else{
+            alert(result['detail'])
+            }
+      }
       </script>
       
       </html>   

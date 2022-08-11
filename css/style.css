@@ -153,6 +153,7 @@
   top: 10px;
   padding-bottom: 10px;
   border-top: 0;
+  border-bottom:0;
 }
 
 
@@ -177,4 +178,29 @@
   display: flex;
   flex-direction: column;
   justify-content:space-between;
+}
+
+#btn-settings-edit{
+  float: right;
+  color: #ffffff;
+  background-color:#ffffff38;
+}
+
+#btn-settings-edit:hover{
+  background-color: #212529;
+}
+
+
+#dob::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+}
+
+#fullname, #username, #email{
+ color: #ffffff !important;
+}
+
+#dob{
+  color: white !important;
+  cursor:pointer;
 }
