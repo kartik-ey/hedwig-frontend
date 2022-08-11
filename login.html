@@ -65,7 +65,7 @@
     let result = await response.json();
        //console.log(result['detail']);
        if(response.status===404){
-        alert("User not Found!!")
+        alert("User not Found!!, Please Register First.")
         window.location.href="signup.html";
        }
        else if(response.status===400){
