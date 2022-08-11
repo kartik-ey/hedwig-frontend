@@ -281,53 +281,60 @@
         let profile = await response.json();
         //console.log(profile)
         
-            let avis_cards = document.createElement('div');
-            avis_cards.className = 'avis-cards';
-
             let card = document.createElement('div');
             card.className = 'card bg-dark';
-            avis_cards.appendChild(card);
+            
+            
+            let avis_card_head = document.createElement('h4');
+            avis_card_head.className = 'card-header';
+            avis_card_head.innerHTML = `<i class="fa fa-user" aria-hidden="true"></i>&nbsp;Profile:`
+            card.appendChild(avis_card_head);
 
             let card_body = document.createElement('div');
             card_body.className = 'card-body';
             card.appendChild(card_body);
 
-            let avis_card_head = document.createElement('div');
-            avis_card_head.className = 'avis-card-head';
-            card_body.appendChild(avis_card_head);
+            let div1 = document.createElement('div');
+            div1.className = 'div2'
+            card_body.appendChild(div1);
 
-            let fullname = document.createElement('h6');
-            fullname.innerText = 'Full Name: '+profile.fullname;
-            fullname.className = 'card-title';
+            let fullname = document.createElement('p');
+            fullname.innerHTML = `<i class="fa fa-id-card-o" aria-hidden="true"></i>&nbsp;Full Name: `+profile.fullname;
+            fullname.className = 'card-subtitle mb-2';
             fullname.id="card-fullname";
-            avis_card_head.appendChild(fullname);
+            div1.appendChild(fullname);
 
-            let username = document.createElement('h6');
-            username.innerText = 'Username: '+profile.username;
-            username.className = 'card-title';
+            let username = document.createElement('p');
+            username.innerHTML = `<i class="fa fa-at" aria-hidden="true"></i>&nbsp;Username: `+profile.username;
+            username.className = 'card-subtitle mb-2';
             username.id="card-username";
-            avis_card_head.appendChild(username);
-
-            let email = document.createElement('h6');
-            email.innerText = 'Email: '+profile.email;
-            email.className = 'card-title';
-            email.id="card-email";
-            avis_card_head.appendChild(email);
-
-            let dob = document.createElement('h6');
-            dob.innerText = 'Born On: '+profile.dob;
-            dob.className = 'card-title';
-            dob.id="card-dob";
-            avis_card_head.appendChild(dob);
+            div1.appendChild(username);
 
             
-            let joined_on = document.createElement('h6');
-            joined_on.innerText = 'Joined On: '+profile.created_on;
-            joined_on .className = 'card-joined_on';
-            joined_on .id="card-created_on";
-            avis_card_head.appendChild(joined_on);
+            let div2 = document.createElement('div');
+            div2.className = 'div2'
+            card_body.appendChild(div2);
 
-            document.getElementById('profileCreate').appendChild(avis_cards);
+            let email = document.createElement('p');
+            email.innerHTML = `<i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;Email: `+profile.email;
+            email.className = 'card-subtitle mb-2';
+            email.id="card-email";
+            div2.appendChild(email);
+
+            let dob = document.createElement('p');
+            dob.innerHTML = `<i class="fa fa-birthday-cake" aria-hidden="true"></i>&nbsp;Born On:`+profile.dob;
+            dob.className = 'card-subtitle mb-2';
+            dob.id="card-dob";
+            div2.appendChild(dob);
+
+            
+            let joined_on = document.createElement('p');
+            joined_on.innerHTML = `<i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Joined: `+profile.created_on;
+            joined_on .className = 'card-text';
+            joined_on .id="card-created_on";
+            card_body.appendChild(joined_on);
+
+            document.getElementById('profileCreate').appendChild(card);
 
     }
       </script>
