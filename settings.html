@@ -169,7 +169,8 @@
             let result = await request.json();
             //alert(result['msg']);
             if(request.status===200){
-                location.reload()
+              sessionStorage.clear();
+              window.location.href = 'signup.html'
             }
             else{
             alert(result['detail'])
