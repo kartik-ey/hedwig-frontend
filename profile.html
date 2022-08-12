@@ -64,7 +64,7 @@
         window.onload = async(e) => {
           e.preventDefault();
           loadProfile();
-          let response = await fetch('http://127.0.0.1:8000/avis_by_user', {
+          let response = await fetch('https://calm-beyond-56782.herokuapp.com/avis_by_user', {
             method: 'GET',
             headers: myheaders
         })
@@ -216,7 +216,7 @@
         async function delete_avis(x) {
             alert('Are you sure, you want to delete this avis?')
             let avis_id = parseInt(x.id)
-            let request = await fetch(`http://127.0.0.1:8000/delete_avis/${avis_id}`,{
+            let request = await fetch(`https://calm-beyond-56782.herokuapp.com/delete_avis/${avis_id}`,{
                 method: 'DELETE',
                 headers: myheaders,  
 
@@ -235,7 +235,7 @@
         }
         async function get_avis(y) {
             let avis_id = parseInt(y)
-            let request = await fetch(`http://127.0.0.1:8000/get_avis/${avis_id}`,{
+            let request = await fetch(`https://calm-beyond-56782.herokuapp.com/get_avis/${avis_id}`,{
                 method: 'GET',
                 headers: myheaders,  
 
@@ -258,7 +258,7 @@
           edit_avis = JSON.stringify(edit_avis)
           //console.log(create_avis)
 
-          let request = await fetch(`http://127.0.0.1:8000/edit_avis/${avis_id}`,{
+          let request = await fetch(`https://calm-beyond-56782.herokuapp.com/edit_avis/${avis_id}`,{
             method: 'PUT',
             headers: myheaders,
                 body: edit_avis,
@@ -274,7 +274,7 @@
     }
                
           async function loadProfile(){
-          let response = await fetch('http://127.0.0.1:8000/get_user', {
+          let response = await fetch('https://calm-beyond-56782.herokuapp.com/get_user', {
             method: 'GET',
             headers: myheaders
         })

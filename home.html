@@ -58,7 +58,7 @@
           create_avis = JSON.stringify(create_avis)
           //console.log(create_avis)
 
-          let request = await fetch('http://127.0.0.1:8000/create_avis',{
+          let request = await fetch('https://calm-beyond-56782.herokuapp.com/create_avis',{
             method: 'POST',
             headers: myheaders,
                 body: create_avis,
@@ -77,7 +77,7 @@
         window.onload = async(e) => {
           e.preventDefault();
 
-          let response = await fetch('http://127.0.0.1:8000/all_avis', {
+          let response = await fetch('https://calm-beyond-56782.herokuapp.com/all_avis', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',

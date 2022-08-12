@@ -58,7 +58,7 @@
   <script type="text/javascript">
      formElem.onsubmit = async(e) => {
         e.preventDefault();
-        let response = await fetch('http://127.0.0.1:8000/token', {
+        let response = await fetch('https://calm-beyond-56782.herokuapp.com/token', {
       method: 'POST',
       body: new FormData(formElem)
     })
