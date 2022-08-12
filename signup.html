@@ -39,11 +39,11 @@
                   <label for="floatingInput">Email</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input name="dob" type="date" class="form-control" id="floatingInput" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" required>
+                  <input name="dob" type="date" class="form-control" id="floatingInput" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" min="1922-01-01" max="2012-01-01" required>
                   <label for="floatingInput">Born On</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                  <input name="password" type="password" class="form-control" id="floatingPassword" placeholder="Password" minlength="3" required>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div class="d-grid">

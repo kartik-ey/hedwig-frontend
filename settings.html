@@ -59,7 +59,7 @@
                               <label for="email">Email</label>
                             </div>
                             <div class="form-floating mb-3" style="color: white;">
-                              <input name="dob" type="date" class="form-control bg-dark" id="dob" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" required>
+                              <input name="dob" type="date" class="form-control bg-dark" id="dob" placeholder="yyyy-mm-dd" format="yyyy-mm-dd" min="1922-01-01" max="2012-01-01" required>
                               <label for="dob">Born On</label>
                             </div>
                               <button type="button" class="btn btn-dark rounded-pill" data-bs-dismiss="modal">Cancel</button>
@@ -167,9 +167,9 @@
             });
               
             let result = await request.json();
-            //alert(result['msg']);
             if(request.status===200){
               sessionStorage.clear();
+              alert(result['msg']);
               window.location.href = 'signup.html'
             }
             else{
