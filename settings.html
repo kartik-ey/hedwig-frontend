@@ -22,7 +22,7 @@
           });
           </script> 
       </head>
-      <body class="home-body bg-dark" style="height: 700px;">
+      <body class="home-body bg-dark"  id="settingsBody">
           <div class="container home-cont">
           <div id="sidebar"></div>
           <main class="home-main d-flex flex-nowrap">
@@ -33,7 +33,7 @@
                     <h4>Edit Profile&nbsp;
                     <i class="fa fa-pencil fa-xs" aria-hidden="true"></i></h4>
                   </div>
-                  <div class="card-body flex bg-dark"  style="border:0; flex-direction: column;">
+                  <div class="card-body flex bg-dark" id="editUserCard"  style="border:0;">
                     <p class="card-text bg-dark" style="float: left;">Edit the details of your profile.</p>
                     <button class="btn rounded-pill" id="btn-settings-edit" onclick="loadProfile()" 
                     data-bs-toggle="modal" data-bs-target="#edit_modal" data-bs-whatever="@edit_modal">Edit</button>
@@ -76,9 +76,9 @@
                 <div class="card bg-dark"  style="border:0; top: 10px;">
                   <div class="card-header bg-dark" style="border:0;">
                     <h4>Delete Account&nbsp;
-                      <i class="fa fa-trash-o fa-xs" aria-hidden="true"></i>
+                      <i class="fa fa-trash-o fa-xs" aria-hidden="true"></i></h4>
                   </div>
-                  <div class="card-body flex bg-dark"  style="border:0; flex-direction: column;">
+                  <div class="card-body flex bg-dark" id="editUserCard" style="border:0;">
                     <p class="card-text bg-dark" style="float: left;">Delete yourself from the matrix.</p>
                     <button class="btn btn-outline-danger rounded-pill" style="float: right;"
                     data-bs-toggle="modal" data-bs-target="#delete_modal" data-bs-whatever="@edit_modal">Delete</button>

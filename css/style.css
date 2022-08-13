@@ -58,7 +58,7 @@
   display: flex;
   flex-direction: row;
   height: 100%;
-  margin-right: 40%%;
+  margin: 0;
 }
 
 #sidebar{
@@ -72,7 +72,6 @@
 .home-main{
   min-width:50%;
   height: 100%;
-  margin-right: 50%;
 }
 
 .middle{
@@ -159,7 +158,6 @@
   padding-bottom: 10px;
   border-top: 0;
   border-bottom:0;
-  min-width: 70%;
 }
 
 
@@ -209,4 +207,27 @@
 #dob{
   color: white !important;
   cursor:pointer;
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* For mobile phones: */
+  [id*="sidebar"] {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  #profileCreate .card-body{
+    flex-direction: column;
+  }
+  #editUserCard{
+    width: fit-content;
+    flex-direction: column;
+  }
+} 
+
+#settingsBody{
+  height: 500px;
+  border-bottom: 1px;
 }
