@@ -45,29 +45,34 @@
 }
 
 .home-body{
-  width: 100%;
   height: 100%;
-  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-body::-webkit-scrollbar{
+  display: none;
 }
 
 .home-cont{
   display: flex;
   flex-direction: row;
   height: 100%;
-  width: 100%;
+  margin-right: 40%%;
 }
 
 #sidebar{
-  width: 20%;
   height: 100%;
   float: left;
   position: sticky;
   top: 10px;
+  margin-left: 5%;
 }
 
 .home-main{
-  width:50%;
+  min-width:50%;
   height: 100%;
+  margin-right: 50%;
 }
 
 .middle{
@@ -154,6 +159,7 @@
   padding-bottom: 10px;
   border-top: 0;
   border-bottom:0;
+  min-width: 70%;
 }
 
 
@@ -171,13 +177,13 @@
 #profileCreate .card-body .div2{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #profileCreate .card-body .div2{
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content:space-around;
 }
 
 #btn-settings-edit{
